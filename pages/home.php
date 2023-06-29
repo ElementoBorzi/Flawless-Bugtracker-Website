@@ -12,7 +12,7 @@
       </p>
       <p class="card-text">What would you want to do?</p>
       <a href="?page=bugreport" class="btn btn-primary">Report a new bug</a>
-      <a href="?page=viewbugs" class="btn btn-success">View known bugs</a>
+      <a href="?page=list-bugs" class="btn btn-success">View known bugs</a>
     </div>
   </div>
 </div>

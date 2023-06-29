@@ -44,7 +44,7 @@ if (!empty($_POST['submit']))
         Introduce as many information as you can, and, if possible, add a screenshot or a video as proof. <br/>
         Thank you!
     </p>
-    <a href="?page=viewbugs" target="_blank" class="btn btn-success">View known bugs</a>
+    <a href="?page=list-bugs" target="_blank" class="btn btn-success">View known bugs</a>
   </div>
 </div>
 

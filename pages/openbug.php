@@ -12,7 +12,7 @@ foreach ($bugDetails as $bug)
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
-            <li class="breadcrumb-item"><a href="?page=viewbugs">Known bugs</a></li>
+            <li class="breadcrumb-item"><a href="?page=list-bugs">Known bugs</a></li>
             <li class="breadcrumb-item active" aria-current="page">Bug ID #<?= $bug['id'] ?></li>
         </ol>
     </nav>
@@ -27,7 +27,7 @@ foreach ($bugDetails as $bug)
                 to the list and search for the bug you're looking for.
             </p>
             <a href="?page=bugreport" class="btn btn-primary">Report a new bug</a>
-            <a href="?page=viewbugs" class="btn btn-success">View known bugs</a>
+            <a href="?page=list-bugs" class="btn btn-success">View known bugs</a>
         </div>
     </div>
 

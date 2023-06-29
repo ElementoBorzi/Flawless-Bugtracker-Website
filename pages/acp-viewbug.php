@@ -52,12 +52,21 @@ foreach ($bugDetails as $bug)
     <div class="card" style="margin-top: 20px">
         <div class="card-body">
             <h4>Edit bug status</h4>
+
             <?php
+
             if(isset($_POST['submit']))
             {
                 $Bugs->updateBug($_POST['bugId'], $_POST['category'], $_POST['tags'], $_POST['status']);
             }
+
+            if(isset($_POST['delete']))
+            {
+                $Bugs->deleteBug($_POST['bugId']);
+            }
+
             ?>
+
             <form class="row g-3" method="POST" action="">
                 <input type="hidden" value="<?= $bug['id']; ?>" name="bugId">
                 <div class="col-md-12">
@@ -88,8 +97,51 @@ foreach ($bugDetails as $bug)
                 </div>
 
                 <div class="col-md-12">
-                    <input type="submit" class="btn btn-primary" name="submit" value="Modify"/>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#submitChanges">
+                        Update
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBug">
+                        Delete
+                    </button>
                 </div>
+
+                
+                <div class="modal fade" id="submitChanges" tabindex="-1" aria-labelledby="submitChanges" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="submitChanges">Warning</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to update Bug Report #<?= $bug['id'] ?>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary me-5" name="submit" value="Update"/>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="deleteBug" tabindex="-1" aria-labelledby="deleteBug" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteBug">Warning</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to <b>delete</b> Bug Report #<?= $bug['id'] ?>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-danger" name="delete" value="Delete"/>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>

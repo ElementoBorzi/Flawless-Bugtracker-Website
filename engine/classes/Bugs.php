@@ -118,4 +118,15 @@ class Bugs extends Database {
         echo "<div class='alert alert-success' role='alert'><b>Success!</b> The bug #".$id." has been updated.</div>";
     }
 
+    public function deleteBug($id)
+    {
+        $stmt= $this->connect()->prepare("DELETE FROM ".DATABASE.".bugs WHERE id=:id");
+
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
+        
+        //Success Message & Refresh.
+        header("Location: ?page=acp-allbugs");
+    }
+
 }

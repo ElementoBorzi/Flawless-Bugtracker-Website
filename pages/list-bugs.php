@@ -3,7 +3,7 @@
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
-	<h1 style="margin-bottom: 50px;">WoWEmu 5.4.8 Repack Bug Reporter</h1>
+	<h1 style="margin-bottom: 50px;"><?= HEADER ?></h1>
 
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">

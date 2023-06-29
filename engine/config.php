@@ -8,6 +8,10 @@
     DEFINE("DATABASE","bugtracker");
     DEFINE("PORT","3306");
 
+    DEFINE ("HEADER", "WoWEmu 5.4.8 Repack Bugtracker");
+    DEFINE ("TITLE", "Bugtracker");
+    
+
     require ("classes/Database.php");
     require ("classes/Admin.php");
     require ("classes/Bugs.php");

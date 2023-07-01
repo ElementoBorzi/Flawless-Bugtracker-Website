@@ -2,7 +2,7 @@
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="?page=acp-home">Bugtracker</a>  
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="?page=acp-logout">Sign out</a>
+            <a class="nav-link px-3" href="?page=logout">Sign out</a>
         </div>
     </div>
 </header>

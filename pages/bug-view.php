@@ -1,3 +1,5 @@
+<?php include("includes/header.php") ?>
+
 <?php
 $bugDetails = $Bugs->getBugDetails($_GET['id']);
 
@@ -12,7 +14,7 @@ foreach ($bugDetails as $bug)
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
-            <li class="breadcrumb-item"><a href="?page=list-bugs">Known bugs</a></li>
+            <li class="breadcrumb-item"><a href="?page=bug-list">Known bugs</a></li>
             <li class="breadcrumb-item active" aria-current="page">Bug ID #<?= $bug['id'] ?></li>
         </ol>
     </nav>
@@ -26,8 +28,8 @@ foreach ($bugDetails as $bug)
                 If you wish to submit a bug report that you can't find on the list, please click on the button bellow. Else, you can go back 
                 to the list and search for the bug you're looking for.
             </p>
-            <a href="?page=bugreport" class="btn btn-primary">Report a new bug</a>
-            <a href="?page=list-bugs" class="btn btn-success">View known bugs</a>
+            <a href="?page=bug-report" class="btn btn-primary">Report a new bug</a>
+            <a href="?page=bug-list" class="btn btn-success">View known bugs</a>
         </div>
     </div>
 

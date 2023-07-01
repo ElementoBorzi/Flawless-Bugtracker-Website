@@ -2,6 +2,41 @@
 
 class Common extends Database {
 
+    public function generateCaptcha($length)
+    {
+        if (isset($_SESSION['captcha']))
+        {
+            unset($_SESSION["captcha"]);
+        } 
+
+        $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $charactersLength = strlen($characters);
+        $randomString = "";
+
+        for ($i = 0; $i < $length; $i++) 
+        {
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        }
+
+        
+        $_SESSION['captcha'] = $randomString;
+        return $_SESSION['captcha'];
+    
+    }
+
+    public function verifyCaptcha($captchaCode)
+    {
+        if ($captchaCode == $_SESSION['captcha'])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
     public function customEcho($x, $length) 
     {
         if(strlen($x)<=$length) 

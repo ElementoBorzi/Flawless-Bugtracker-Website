@@ -10,15 +10,18 @@
 
     DEFINE ("HEADER", "WoWEmu 5.4.8 Repack Bugtracker");
     DEFINE ("TITLE", "Bugtracker");
+    DEFINE ("CAPTCHA", "10");
     
 
     require ("classes/Database.php");
+    require ("classes/Account.php");
     require ("classes/Admin.php");
     require ("classes/Bugs.php");
     require ("classes/Common.php");
 
     $Database = new Database();
-    $Admin = new Admin();
+    $Account = new Account();
+    $Admin = new Admin();    
     $Bugs = new Bugs();
     $Common = new Common();
 

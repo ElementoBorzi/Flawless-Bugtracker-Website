@@ -1,3 +1,5 @@
+<?php include("includes/header.php") ?>
+
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
 <h1 style="margin-bottom: 50px;"><?= HEADER ?></h1>
 <?php
@@ -5,14 +7,23 @@ if (!empty($_POST['submit']))
 {
     if(!empty($_POST['title']) && !empty($_POST['description'])) 
     {
-        $title = $_POST['title'];
-        $description = $_POST['description'];
-        $resources = $_POST['proof'];
-        $author = $_POST['author'];
-        $category = $_POST['category'];
-        $tags = $_POST['tags'];
-        
-        $Bugs->insertBugs($title, $description, $resources, $author, $category, $tags);
+        $confirmCaptcha = $Common->verifyCaptcha($_POST['captcha']);
+
+        if ($confirmCaptcha == TRUE)
+        {
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $resources = $_POST['proof'];
+            $author = $_POST['author'];
+            $category = $_POST['category'];
+            $tags = $_POST['tags'];
+            
+            $Bugs->insertBugs($title, $description, $resources, $author, $category, $tags);
+        }
+        else 
+        {
+            echo "<div class='alert alert-danger' role='alert'>Incorrect captcha. Please try again.</div>";
+        }
     } 
     else 
     {
@@ -44,7 +55,7 @@ if (!empty($_POST['submit']))
         Introduce as many information as you can, and, if possible, add a screenshot or a video as proof. <br/>
         Thank you!
     </p>
-    <a href="?page=list-bugs" target="_blank" class="btn btn-success">View known bugs</a>
+    <a href="?page=bug-list" target="_blank" class="btn btn-success">View known bugs</a>
   </div>
 </div>
 
@@ -88,47 +99,29 @@ if (!empty($_POST['submit']))
 
     <div class="col-md-4">
         <label for="Author">Author</label>
-        <input type="text" class="form-control" name="author" id="Author" maxlength="50" placeholder="If anonymous, leave empty.">
+        <?php 
+        if (isset($_SESSION['email'])) 
+        { 
+            echo "<input type='text' class='form-control' name='author' placeholder='".$_SESSION['username']."' readonly>";
+        }
+        else
+        {
+            echo "<input type='text' class='form-control' name='author' placeholder='Anonymous' readonly>";
+        }
+        ?>
     </div>
+    
+    <div class="col-md-12">
+        <label for="Captcha" class="input-group-text w-100 rounded-0 rounded-top text-center d-block"><?= $Common->generateCaptcha(CAPTCHA); ?></label>
+        <input type="hidden" value ="<?= $_SESSION['captcha'] ?>" id="captchaValue">
+        <input type="text" class="form-control rounded-0 rounded-bottom" placeholder="Captcha" name="captcha" id="Captcha" maxlength="<?=CAPTCHA?>" required>
+        <div id="PriorityHelp" class="form-text">Required field.</div>
+    </div> 
 
     <div class="col-md-12">
         <input type="submit" class="btn btn-primary" name="submit" value="Submit this bug!"/>
     </div>
+
+    <script src="pages/js/new-bug.js"></script>
 </form>
-
-<script>
-function validate() 
-{
-    var title = document.getElementById('Title').value;
-    var description = document.getElementById('Description').value;
-    var proof = document.getElementById('Proof').value;
-    var author = document.getElementById('Author').value;
-                
-    if (title.length > 50) 
-    {
-        alert("Title field contains more than 50 characters!");
-        return false; // keep form from submitting
-    }
-
-    if (description.length > 5000) 
-    {
-        alert("Description field contains more than 5000 characters!");
-        return false; // keep form from submitting
-    }
-
-    if (proof.length > 500) 
-    {
-        alert("Resources field contains more than 500 characters!");
-        return false; // keep form from submitting
-    }
-
-    if (author.length > 50) 
-    {
-        alert("Author field contains more than 50 characters!");
-        return false; // keep form from submitting
-    }
-    
-    return true;
-}
-</script>
 </div>

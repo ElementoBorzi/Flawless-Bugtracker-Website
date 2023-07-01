@@ -24,17 +24,32 @@ class Admin extends Database {
     {
         $records = $this->getUser($email)->fetch();
 
-        if (password_verify($password, $records['password']))
+        if ($records >=1)
         {
-            $_SESSION['email'] = $records['email'];
-            $_SESSION['id'] = $records['id'];
-            header("location: ?page=acp-home");
+            if ($records['rank'] >= 1)
+            {
+                if (password_verify($password, $records['password']))
+                {
+                    $_SESSION['username'] = $records['username'];
+                    $_SESSION['email'] = $records['email'];
+                    $_SESSION['id'] = $records['id'];
+                    $_SESSION['rank'] = $records['rank'];
+                    header("location: ?page=acp-home");
+                } 
+                else 
+                {
+                    echo "<div class='alert alert-danger' role='alert'>The password is incorrect.</div>";
+                }
+            }
+            else
+            {
+                echo "<div class='alert alert-danger' role='alert'>You're not a administrator.</div>";
+            }
         }
-        else
+        else 
         {
-            echo "<div class='alert alert-danger' role='alert'>The password is incorrect.</div>";
+            echo "<div class='alert alert-danger' role='alert'>The e-mail you inserted is invalid.</div>";
         }
     }
-
     
 }

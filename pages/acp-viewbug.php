@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['email']))
+if(isset($_SESSION['email']) && $_SESSION['rank'] >=1)
 {
 
 $bugDetails = $Bugs->getBugDetails($_GET['id']);

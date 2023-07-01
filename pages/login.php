@@ -2,6 +2,7 @@
 if(!isset ($_SESSION['email']))
 {
 ?>
+
 <link rel="stylesheet" href="theme/default/css/acp-login.css">
 
 <main class="form-signin">
@@ -11,7 +12,7 @@ if(!isset ($_SESSION['email']))
     {
         if (!empty($_POST["email"]) && !empty($_POST["password"]))
         {
-            $Admin->login($_POST["email"], $_POST["password"]); 
+            $hash = $Account->login($_POST["email"], $_POST["password"]); 
         }
         else
         {
@@ -21,7 +22,7 @@ if(!isset ($_SESSION['email']))
     ?>
 
     <form method="post" action="">
-        <h1 class="text-center h3 mb-3 fw-normal" style="margin-bottom: 50px;">Administration Panel</h1>
+        <h1 class="text-center h3 mb-3 fw-normal" style="margin-bottom: 50px;">Sign in</h1>
         <div class="form-floating">
             <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
@@ -40,6 +41,6 @@ if(!isset ($_SESSION['email']))
 }
 else
 {
-    header ("location: ?page=acp-home");
+    header ("location: ?page=ucp");
 }
 ?>

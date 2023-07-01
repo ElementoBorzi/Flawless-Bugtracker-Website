@@ -1,3 +1,5 @@
+<?php include("includes/header.php") ?>
+
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
   <h1 style="margin-bottom: 50px;"><?= HEADER ?></h1>
 
@@ -10,9 +12,9 @@
           We appreciate your dedication to improving the repack and ensuring a smooth user experience. 
           Please use this platform to submit detailed bug reports, including steps to reproduce the issue, expected behavior, and any additional relevant information.
       </p>
-      <p class="card-text">What would you want to do?</p>
-      <a href="?page=bugreport" class="btn btn-primary">Report a new bug</a>
-      <a href="?page=list-bugs" class="btn btn-success">View known bugs</a>
+      <p class="card-text">What do you want to do?</p>
+      <a href="?page=bug-report" class="btn btn-primary">Report a new bug</a>
+      <a href="?page=bug-list" class="btn btn-success">View known bugs</a>
     </div>
   </div>
 </div>

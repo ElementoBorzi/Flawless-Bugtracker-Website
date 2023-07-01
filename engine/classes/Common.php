@@ -1,7 +1,21 @@
 <?php
-
+/**
+ * This class is used to store common functions
+ *
+ * @name	: Common.php
+ * @package	: Bugtracker
+ * @author	: Pluton <ferreirawow@gmail.com>
+ * @link	: --
+ * @version	: 1.0
+ */
 class Common extends Database {
 
+    /**
+	 * Generates a random string that will act as a Captcha
+	 * 
+	 * @param	: $length (string)
+	 * @return	: $_SESSION['captcha']
+	 */
     public function generateCaptcha($length)
     {
         if (isset($_SESSION['captcha']))
@@ -18,12 +32,17 @@ class Common extends Database {
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
 
-        
         $_SESSION['captcha'] = $randomString;
+
         return $_SESSION['captcha'];
-    
     }
 
+    /**
+	 * Verifies if a string matches the current captcha
+	 * 
+	 * @param	: $captchaCode (string)
+	 * @return	: bool
+	 */
     public function verifyCaptcha($captchaCode)
     {
         if ($captchaCode == $_SESSION['captcha'])
@@ -36,7 +55,13 @@ class Common extends Database {
         }
     }
 
-
+    /**
+	 * Converts a string to a specific length
+	 * 
+     * @param	: $X (string)
+	 * @param	: $length (integrer)
+	 * @return	: $y (string)
+	 */
     public function customEcho($x, $length) 
     {
         if(strlen($x)<=$length) 
@@ -50,9 +75,14 @@ class Common extends Database {
         }
     }
 
+    /**
+	 * Gets a specific category name
+	 * 
+	 * @param	: $categoryId (integrer)
+	 * @return	: $row['name'] (string)
+	 */
     public function getCategoryName ($categoryId) 
     {
-
         $stmt = $this->connect()->prepare("SELECT * FROM ".DATABASE.".category WHERE id = ?");
         $stmt->execute([$categoryId]);
 
@@ -65,10 +95,14 @@ class Common extends Database {
         }
     }
 
-
+    /**
+	 * Gets a specific priority name
+	 * 
+	 * @param	: $tagsId (integrer)
+	 * @return	: $row['name'] (string)
+	 */
     public function getPriorityName ($tagsId) 
     {
-
         $stmt = $this->connect()->prepare("SELECT * FROM ".DATABASE.".tags WHERE id = ?");
         $stmt->execute([$tagsId]);
 
@@ -92,9 +126,14 @@ class Common extends Database {
         }
     }
 
+    /**
+	 * Gets a specific Status name
+	 * 
+	 * @param	: $statusId (integrer)
+	 * @return	: $row['name'] (string)
+	 */
     public function getStatusName ($statusId) 
     {
-
         $stmt = $this->connect()->prepare("SELECT * FROM ".DATABASE.".status WHERE id = ?");
         $stmt->execute([$statusId]);
 
@@ -106,6 +145,4 @@ class Common extends Database {
             }
         }
     }
-
-
 }

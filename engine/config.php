@@ -11,6 +11,8 @@
     DEFINE ("HEADER", "WoWEmu 5.4.8 Repack Bugtracker");
     DEFINE ("TITLE", "Bugtracker");
     DEFINE ("CAPTCHA", "10");
+
+    DEFINE ("ACP_PASSWORD", "bugtracker");
     
 
     require ("classes/Database.php");

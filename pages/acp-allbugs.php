@@ -1,6 +1,5 @@
 <?php
-if(isset($_SESSION['email']) && $_SESSION['rank'] >=1)
-{
+$Common->protect("admin-is-logged");
 ?>
 
 <link rel="stylesheet" href="theme/default/css/acp-home.css">
@@ -52,12 +51,6 @@ if(isset($_SESSION['email']) && $_SESSION['rank'] >=1)
 	</script>
 </main>
 
-
-<?php
+<?php 
 include("includes/acp-footer.php");
-} 
-else
-{
-    header("location: ?page=home");
-}
 ?>

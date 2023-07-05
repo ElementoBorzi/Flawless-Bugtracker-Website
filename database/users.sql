@@ -20,10 +20,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` char(50) COLLATE utf8_bin DEFAULT NULL,
   `email` char(255) COLLATE utf8_bin DEFAULT NULL,
   `password` char(255) COLLATE utf8_bin DEFAULT NULL,
-  `join_date` timestamp NULL DEFAULT NULL,
+  `join_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `rank` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

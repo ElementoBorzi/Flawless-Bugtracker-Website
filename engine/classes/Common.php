@@ -7,7 +7,7 @@
  * @author	: Pluton <ferreirawow@gmail.com>
  * @link	: --
  * @version	: 1.0
- */
+*/
 class Common extends Database {
 
     /**
@@ -15,7 +15,7 @@ class Common extends Database {
 	 * 
 	 * @param	: $length (string)
 	 * @return	: $_SESSION['captcha']
-	 */
+	*/
     public function generateCaptcha($length)
     {
         if (isset($_SESSION['captcha']))
@@ -42,7 +42,7 @@ class Common extends Database {
 	 * 
 	 * @param	: $captchaCode (string)
 	 * @return	: bool
-	 */
+	*/
     public function verifyCaptcha($captchaCode)
     {
         if ($captchaCode == $_SESSION['captcha'])
@@ -61,7 +61,7 @@ class Common extends Database {
      * @param	: $X (string)
 	 * @param	: $length (integrer)
 	 * @return	: $y (string)
-	 */
+	*/
     public function customEcho($x, $length) 
     {
         if(strlen($x)<=$length) 
@@ -80,7 +80,7 @@ class Common extends Database {
 	 * 
 	 * @param	: $categoryId (integrer)
 	 * @return	: $row['name'] (string)
-	 */
+	*/
     public function getCategoryName ($categoryId) 
     {
         $stmt = $this->connect()->prepare("SELECT * FROM ".DATABASE.".category WHERE id = ?");
@@ -100,7 +100,7 @@ class Common extends Database {
 	 * 
 	 * @param	: $tagsId (integrer)
 	 * @return	: $row['name'] (string)
-	 */
+	*/
     public function getPriorityName ($tagsId) 
     {
         $stmt = $this->connect()->prepare("SELECT * FROM ".DATABASE.".tags WHERE id = ?");
@@ -131,7 +131,7 @@ class Common extends Database {
 	 * 
 	 * @param	: $statusId (integrer)
 	 * @return	: $row['name'] (string)
-	 */
+	*/
     public function getStatusName ($statusId) 
     {
         $stmt = $this->connect()->prepare("SELECT * FROM ".DATABASE.".status WHERE id = ?");
@@ -143,6 +143,41 @@ class Common extends Database {
             {
                 return $row['name'];
             }
+        }
+    }
+
+    /**
+	 * Checks if the user has the required permissions to view the page
+	 * 
+	 * @param	: $action (string)
+     * @param	: $page (string)
+	 * @return	: return page
+	*/
+    public function protect($action)
+    {
+        switch ($action)
+        {
+            case "user-is-logged":
+                if (!isset($_SESSION['username']))
+                {
+                    header ("location: ?page=login");
+                }
+                break;
+
+            case "admin-is-logged":
+                if (!isset($_SESSION['admin']))
+                {
+                    header ("location: ?page=acp-login");
+                }
+                break;
+
+            case "acp-rank-verify":
+                if (!isset($_SESSION['rank']) >= 1)
+                {
+                    header ("location: ?page=home");
+                }
+                break;
+
         }
     }
 }

@@ -1,17 +1,10 @@
 <?php
-if(isset($_SESSION['email']) && $_SESSION['rank'] >=1)
-{
+$Common->protect("admin-is-logged");
 
-$bugDetails = $Bugs->getBugDetails($_GET['id']);
-
-foreach ($bugDetails as $bug)
-{
-    
+include("includes/acp-header.php");
 ?>
 
 <link rel="stylesheet" href="theme/default/css/acp-home.css">
-
-<?php include("includes/acp-header.php"); ?>
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -146,12 +139,7 @@ foreach ($bugDetails as $bug)
         </div>
     </div>
 </div>
-<?php
+
+<?php 
 include("includes/acp-footer.php");
-}
-} 
-else
-{
-    header("location: ?page=home");
-}
 ?>

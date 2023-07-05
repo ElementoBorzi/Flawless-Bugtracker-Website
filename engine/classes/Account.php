@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This class is used for account related functions
+ *
+ * @name	: Account.php
+ * @package	: Bugtracker
+ * @author	: Gabriel Ferreira <ferreirawow@gmail.com>
+ * @link	: --
+ * @version	: 1.0
+ */
 class Account extends Database {
     
     public function checkUser($userInformation)
@@ -18,6 +27,7 @@ class Account extends Database {
             {
                 $email = TRUE;
             }
+            $stmt = null;
         }
         
         if (isset($userInformation["id"]))
@@ -77,17 +87,16 @@ class Account extends Database {
             
             if (password_verify($password, $getInformation["password"]))
             {
-                $_SESSION['username'] = $checkUser['username'];
-                $_SESSION['email'] = $checkUser['email'];
-                $_SESSION['id'] = $checkUser['id'];
-                $_SESSION['rank'] = $checkUser['rank'];
+                $_SESSION['username'] = $getInformation['username'];
+                $_SESSION['email'] = $getInformation['email'];
+                $_SESSION['id'] = $getInformation['id'];
+                $_SESSION['rank'] = $getInformation['rank'];
                 header("location: ?page=ucp");
             } 
             else 
             {
                 echo "<div class='alert alert-danger' role='alert'>The password is incorrect.</div>";
-            }
-            
+            } 
         }
         else 
         {
@@ -132,4 +141,14 @@ class Account extends Database {
         }
     }
 
+    public function getAccountTotalBugs($username)
+    {
+        $stmt = $this->connect()->prepare("SELECT COUNT(*) as allcount FROM ".DATABASE.".bugs WHERE author = :author");
+        $stmt->bindValue(":author", $username);
+        $stmt->execute();
+
+        $records = $stmt->fetch();
+
+        return $records;
+    }
 }

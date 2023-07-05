@@ -14,7 +14,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- A despejar estrutura para tabela bugtracker.bugs
 CREATE TABLE IF NOT EXISTS `bugs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` char(51) COLLATE utf8_bin DEFAULT NULL,
@@ -27,9 +26,7 @@ CREATE TABLE IF NOT EXISTS `bugs` (
   `status` char(50) COLLATE utf8_bin DEFAULT NULL,
   `author` char(50) COLLATE utf8_bin DEFAULT 'Anonymous',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- A despejar dados para tabela bugtracker.bugs: ~0 rows (aproximadamente)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

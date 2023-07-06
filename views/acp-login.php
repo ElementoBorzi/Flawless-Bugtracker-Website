@@ -1,17 +1,14 @@
 <?php
 $Common->protect("acp-rank-verify");
+
+include ("controllers/acp-login.php");
 ?>
 
 <link rel="stylesheet" href="theme/default/css/acp-login.css">
 
 <main class="form-signin">
 
-    <?php
-    if(isset($_POST['login']))
-    {
-        $Admin->login($_POST['password']);
-    }
-    ?>
+    <?= $Database->userMessage($_SESSION['message']) ?>
 
     <form method="post" action="">
         <h1 class="text-center h3 mb-3 fw-normal" style="margin-bottom: 50px;">Administration Panel</h1>

@@ -21,12 +21,17 @@ class Admin extends Database {
     {
         if (ACP_PASSWORD == $password)
         {
-            $_SESSION['admin'] = $_SESSION['userRank'].$_SESSION['username'];
+            $_SESSION['admin'] = $_SESSION['rank'].$_SESSION['username'];
             header("location: ?page=acp-home"); 
         }
         else
         {
-            echo "<div class='alert alert-danger' role='alert'>Incorrect Password.</div>";
+            $message = array(
+                "type" => "danger",
+                "text" => "The password is incorrect."
+            );
+
+            $_SESSION['message'] = $message;
         }
     }    
 }

@@ -112,16 +112,27 @@ class Account extends Database {
                 $_SESSION['email'] = $getInformation['email'];
                 $_SESSION['id'] = $getInformation['id'];
                 $_SESSION['rank'] = $getInformation['rank'];
+
                 header("location: ?page=ucp");
             } 
             else 
             {
-                echo "<div class='alert alert-danger' role='alert'>The password is incorrect.</div>";
+                $message = array(
+                    "type" => "danger",
+                    "text" => "The password is incorrect."
+                );
+
+                $_SESSION['message'] = $message;
             } 
         }
         else 
         {
-            echo "<div class='alert alert-danger' role='alert'>The e-mail you inserted is invalid.</div>";
+            $message = array(
+                "type" => "danger",
+                "text" => "The e-mail you inserted is invalid."
+            );
+
+            $_SESSION['message'] = $message;
         }
     }
 
@@ -145,12 +156,22 @@ class Account extends Database {
 
         if($verify["email"] == TRUE)
         {
-            echo "<div class='alert alert-danger' role='alert'>The entered e-mail is already in use.</div>";
+            $message = array(
+                "type" => "danger",
+                "text" => "The entered e-mail is already in use."
+            );
+            
+            $_SESSION['message'] = $message;
         }
 
         if ($verify["username"] == TRUE)
         {
-            echo "<div class='alert alert-danger' role='alert'>The entered username is already in use.</div>";
+            $message = array(
+                "type" => "danger",
+                "text" => "The entered username is already in use."
+            );
+            
+            $_SESSION['message'] = $message;
         } 
 
         if ($verify["email"] == FALSE && $verify["username"] == FALSE)
@@ -164,8 +185,7 @@ class Account extends Database {
             $stmt->bindValue(":rank", "0");
 
             $stmt->execute();
-
-            echo "<div class='alert alert-success' role='alert'><b>Success!</b> Your account was registered.</div>";
+            
             header ("location: ?page=ucp");
         }
     }

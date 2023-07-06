@@ -130,6 +130,6 @@
             <input type="submit" class="btn btn-primary" name="submit" value="Submit this bug!" />
         </div>
 
-        <script src="pages/js/new-bug.js"></script>
+        <script src="views/js/new-bug.js"></script>
     </form>
 </div>

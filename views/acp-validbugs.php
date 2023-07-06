@@ -35,7 +35,7 @@ $Common->protect("admin-is-logged");
 			'serverSide': true,
 			'serverMethod': 'post',
 			'ajax': {
-				'url':'pages/ajax/acp-valid-bugs.php'
+				'url':'views/ajax/acp-valid-bugs.php'
 			},
 			'columns': [
 				{ data: 'id' },

@@ -1,37 +1,12 @@
 <?php
-if (!isset($_SESSION['email']))
-{
-    include("includes/header.php");
+$Common->protect("user-is-logged");
+include("includes/header.php");
+include ("controllers/register.php");
 ?>
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
     <h1 style="margin-bottom: 50px;"><?= HEADER ?></h1>
-    <?php
-    if (!empty($_POST['submit'])) 
-    {
-        if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['passwordRepeat']) && !empty($_POST['captcha'])) 
-        {
-            $confirmCaptcha = $Common->verifyCaptcha($_POST['captcha']);
-
-            if ($confirmCaptcha == TRUE)
-            {
-                $username = $_POST['username'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                
-                $Account->register($username, $email, $password);
-            }
-            else 
-            {
-                echo "<div class='alert alert-danger' role='alert'>Incorrect captcha. Please try again.</div>";
-            }
-        } 
-        else 
-        {
-            echo "<div class='alert alert-danger' role='alert'>In order to submit the report you need to fill in all fields.</div>";
-        }
-    }
-    ?>
+    
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
@@ -39,6 +14,8 @@ if (!isset($_SESSION['email']))
         </ol>
     </nav>
     <hr />
+
+    <?= $Database->userMessage($_SESSION['message']) ?>
 
     <form class="row g-3" method="POST" action="" onsubmit="return validate();">
 
@@ -83,15 +60,6 @@ if (!isset($_SESSION['email']))
             <input type="submit" class="btn btn-primary" name="submit" value="Register"/>
         </div>
 
-        <script src="pages/js/register.js"></script>
+        <script src="views/js/register.js"></script>
     </form>
 </div>
-
-<?php
-}
-else
-{
-    header("location: ?page=home");
-}
-
-?>

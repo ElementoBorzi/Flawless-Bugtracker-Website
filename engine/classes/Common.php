@@ -150,7 +150,6 @@ class Common extends Database {
 	 * Checks if the user has the required permissions to view the page
 	 * 
 	 * @param	: $action (string)
-     * @param	: $page (string)
 	 * @return	: return page
 	*/
     public function protect($action)
@@ -159,8 +158,19 @@ class Common extends Database {
         {
             case "user-is-logged":
                 if (!isset($_SESSION['username']))
-                {
-                    header ("location: ?page=login");
+                { 
+                    switch ($_GET["page"])
+                    {
+                        case "register":
+                            break;
+
+                        case "login":
+                            break;
+
+                        default:
+                        header ("location: ?page=login");
+                        break;
+                    }
                 }
                 break;
 
@@ -177,7 +187,6 @@ class Common extends Database {
                     header ("location: ?page=home");
                 }
                 break;
-
         }
     }
 }

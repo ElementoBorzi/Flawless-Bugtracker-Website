@@ -46,7 +46,7 @@
 			'serverSide': true,
 			'serverMethod': 'post',
 			'ajax': {
-				'url':'pages/ajax/list-all-bugs.php'
+				'url':'views/ajax/list-all-bugs.php'
 			},
 			'columns': [
 				{ data: 'id' },

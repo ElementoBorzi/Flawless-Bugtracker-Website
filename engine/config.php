@@ -40,6 +40,9 @@
 
     DEFINE ("ACP_PASSWORD", "bugtracker");
     
+    //Error handling
+    unset($_SESSION['message']);
+    $_SESSION['message'] = null;
 
     require ("classes/Database.php");
     require ("classes/Account.php");

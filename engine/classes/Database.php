@@ -39,5 +39,19 @@ class Database {
         }
     }
 
+    /**
+	 * Handles the user messages (errors, warnings, success)
+	 * 
+     * @param	: $message (array)
+	 * @return	: echo with message (HTML Element)
+	*/
+    public function userMessage($message)
+    {
+        if (!empty($message))
+        {
+            echo "<div class='alert alert-".$message["type"]."' role='alert'>".$message["text"]."</div>";
+        }
+    }
+
 }
 

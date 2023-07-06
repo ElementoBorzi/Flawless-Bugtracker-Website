@@ -35,7 +35,7 @@ $Common->protect("admin-is-logged");
 			'serverSide': true,
 			'serverMethod': 'post',
 			'ajax': {
-				'url':'pages/ajax/acp-all-bugs.php'
+				'url':'views/ajax/acp-new-bugs.php'
 			},
 			'columns': [
 				{ data: 'id' },
@@ -50,6 +50,7 @@ $Common->protect("admin-is-logged");
 	});
 	</script>
 </main>
+
 
 <?php 
 include("includes/acp-footer.php");

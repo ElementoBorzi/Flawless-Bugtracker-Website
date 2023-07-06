@@ -25,17 +25,11 @@
             <?php if ($_SESSION['rank'] >= 1){ echo "<li><a class='dropdown-item' href='?page=acp-login'>Admin Panel</a></li>"; } ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="?page=logout">Logout</a></li>
-            <?php
-            }
-            else
-            {
-            ?>
+            <?php } else { ?>
             <li><a class="dropdown-item" href="?page=register">Register</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="?page=login">Login</a></li>
-            <?php 
-            }
-            ?>
+            <?php } ?>
           </ul>
         </li>     
       </ul>       

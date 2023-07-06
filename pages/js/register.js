@@ -2,12 +2,9 @@
 function validate() 
 {
     var username = document.getElementById('Username').value;
-
     var email = document.getElementById('Email').value;
-
     var password = document.getElementById('Password').value;
     var passwordRepeat = document.getElementById('PasswordRepeat').value;
-
     var captcha = document.getElementById('Captcha').value;
     var captchaValue = document.getElementById('captchaValue').value;
 

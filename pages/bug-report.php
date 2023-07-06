@@ -1,9 +1,10 @@
-<?php use includes\header; ?>
+<?php include("includes/header.php"); ?>
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
     <h1 style="margin-bottom: 50px;"><?= HEADER ?></h1>
     <?php
-    if (!empty($_POST['submit'])) {
+    if (!empty($_POST['submit']))
+    {
         if (!empty($_POST['title']) && !empty($_POST['description'])) {
             $confirmCaptcha = $Common->verifyCaptcha($_POST['captcha']);
 
@@ -100,14 +101,13 @@
             <label for="Author">Author</label>
             <?php
             if (isset($_SESSION['email'])) {
-                echo "<input type='text' class='form-control' name='author'
+                echo "<input type='text' class='form-control' id='Author' name='author'
                 placeholder='" . $_SESSION['username'] . "' readonly>";
             } else {
-                echo "<input type='text' class='form-control' name='author' placeholder='Anonymous' readonly>";
+                echo "<input type='text' class='form-control' id='Author' name='author' placeholder='Anonymous' readonly>";
             }
             ?>
         </div>
-
         <div class="col-md-12">
             <!-- Don't want users to be able to highlight the captcha -->
             <label for="Captcha" class="input-group-text w-100 rounded-0 rounded-top text-center d-block"
@@ -115,7 +115,8 @@
             -moz-user-select: none; /* Firefox */
             -ms-user-select: none; /* IE 10+ */
             user-select: none;">
-                <?= $Common->generateCaptcha(CAPTCHA); ?></label>
+                <?= $Common->generateCaptcha(CAPTCHA); ?>
+            </label>
 
             <input type="hidden" value="<?= $_SESSION['captcha'] ?>" id="captchaValue">
 

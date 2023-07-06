@@ -67,7 +67,13 @@ if (!isset($_SESSION['email']))
         </div>
 
         <div class="col-md-12">
-            <label for="Captcha" class="input-group-text w-100 rounded-0 rounded-top text-center d-block"><?= $Common->generateCaptcha(CAPTCHA); ?></label>
+            <label for="Captcha" class="input-group-text w-100 rounded-0 rounded-top text-center d-block"
+            style="-webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE 10+ */
+            user-select: none;">
+                <?= $Common->generateCaptcha(CAPTCHA); ?>
+            </label>
             <input type="hidden" value ="<?= $_SESSION['captcha'] ?>" id="captchaValue">
             <input type="text" class="form-control rounded-0 rounded-bottom" placeholder="Captcha" name="captcha" id="Captcha" maxlength="<?=CAPTCHA?>" required>
             <div id="PriorityHelp" class="form-text">Required field.</div>

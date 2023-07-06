@@ -1,32 +1,13 @@
-<?php include("includes/header.php"); ?>
+<?php 
+include ("includes/header.php");
+include ("controllers/bug-report.php");
+?>
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
     <h1 style="margin-bottom: 50px;"><?= HEADER ?></h1>
-    <?php
-    if (!empty($_POST['submit']))
-    {
-        if (!empty($_POST['title']) && !empty($_POST['description'])) {
-            $confirmCaptcha = $Common->verifyCaptcha($_POST['captcha']);
+    
+    <?= $Database->userMessage($_SESSION['message']) ?>
 
-            if ($confirmCaptcha) {
-                $title = $_POST['title'];
-                $description = $_POST['description'];
-                $resources = $_POST['proof'];
-                $author = $_POST['author'];
-                $category = $_POST['category'];
-                $tags = $_POST['tags'];
-
-                $Bugs->insertBugs($title, $description, $resources, $author, $category, $tags);
-            } else {
-                echo "<div class='alert alert-danger' role='alert'>Incorrect captcha. Please try again.</div>";
-            }
-        } else {
-            echo "<div class='alert alert-danger' role='alert'>
-            In order to submit the report you need to fill in all fields.
-            </div>";
-        }
-    }
-    ?>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
@@ -101,10 +82,10 @@
             <label for="Author">Author</label>
             <?php
             if (isset($_SESSION['email'])) {
-                echo "<input type='text' class='form-control' id='Author' name='author'
-                placeholder='" . $_SESSION['username'] . "' readonly>";
+                echo "<input type='text' class='form-control' id='Author' value='".$_SESSION['username']."' name='author'
+                placeholder='".$_SESSION['username']."' readonly>";
             } else {
-                echo "<input type='text' class='form-control' id='Author' name='author' placeholder='Anonymous' readonly>";
+                echo "<input type='text' class='form-control' id='Author' name='author' value='Anonymous' placeholder='Anonymous' readonly>";
             }
             ?>
         </div>

@@ -164,7 +164,13 @@ class Bugs extends Database {
         
         //Success Message & Refresh.
         header("Refresh:3");
-        echo "<div class='alert alert-success' role='alert'><b>Success!</b> Your bug has been submitted. Thank you for your contribution.</div>";
+
+        $message = array(
+            "type" => "success",
+            "text" => "<b>Success!</b> Your bug has been submitted. Thank you for your contribution."
+        );
+
+        $_SESSION['message'] = $message;
     }
 
     /**

@@ -4,7 +4,7 @@
 
 ## Bugtracker
 
-Bugtracker is a simplified bug tracking system where users can report bugs without the need to be logged in. It also includes a few administration tools for managing the reported bugs. Special thanks to [WoWEmu](https://wowemu.org).
+Bugtracker is a simplified bug tracking system where users can report bugs without the need to be logged in. It also includes a few administration tools for managing the reported bugs. Exclusive [WoWEmu](https://wowemu.org) release.
 
 ## Requirements
 
@@ -29,10 +29,11 @@ You can serve Bugtracker to the web using one of the following options:
 1. [MAMP](https://www.mamp.info/en/windows/)
 2. [XAMPP](https://www.apachefriends.org/download.html)
 3. [LAMP](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04)
+4. [LARAGON](https://laragon.org/)
 
 ## Issues
 
-If you encounter any issues, please report them in the [issues section](<link-to-issues-section>).
+If you encounter any issues, please report them in the [issues section](https://github.com/Ferreira9006/Bugtracker/issues).
 
 ## Contributors
 

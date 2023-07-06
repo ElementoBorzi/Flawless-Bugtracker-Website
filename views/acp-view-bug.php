@@ -1,67 +1,47 @@
 <?php
 $Common->protect("admin-is-logged");
 
-include("includes/acp-header.php");
+include ("includes/acp-header.php");
+include ("controllers/acp-view-bug.php");
 ?>
 
 <link rel="stylesheet" href="theme/default/css/acp-home.css">
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Bug Report #<?= $bug['id'] ?></h1>
+        <h1 class="h2">Bug Report #<?= $bugDetails['id'] ?></h1>
     </div>
 
     <div class="card">
         <div class="card-body">
-            <?= $Common->getPriorityName($bug['tags']) ." - <b>Bug status: </b>". $Common->getStatusName($bug['status']) ?>
-            <h5 class="card-title" style="margin-top: 40px;"><?= $bug['title'] ?></h5>
-            <h6 class="card-subtitle mb-2 text-muted">Bug ID #<?= $bug['id'] ?></h6>
+            <?= $Common->getPriorityName($bugDetails['tags']) ." - <b>Bug status: </b>". $Common->getStatusName($bugDetails['status']) ?>
+            <h5 class="card-title" style="margin-top: 40px;"><?= $bugDetails['title'] ?></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Bug ID #<?= $bugDetails['id'] ?></h6>
             <p class="card-text">
                 <hr>
                 <b>Bug Description</b>
                 <br />
-                <?= nl2br($bug['description']) ?>
+                <?= nl2br($bugDetails['description']) ?>
             </p>
 
             <p class="card-text">
                 <b>Resources</b><br />
-                <?php
-                if( empty($bug['resources']))
-                {
-                    echo "There are no resources to show.";
-                } 
-                else 
-                {
-                    echo nl2br($bug['resources']);
-                }
-                ?>
+                <?php echo (!empty($bugDetails['resources'])) ? nl2br($bugDetails['resources']) : "There are no resources to show."; ?>
             </p>
             <hr>
-            <p>Posted by: <i><?= $bug['author'] ?></i></p>
+            <p>Posted by: <i><?= $bugDetails['author'] ?></i></p>
         </div>
     </div>
-
 
     <div class="card" style="margin-top: 20px">
         <div class="card-body">
             <h4>Edit bug status</h4>
 
-            <?php
-
-            if(isset($_POST['submit']))
-            {
-                $Bugs->updateBug($_POST['bugId'], $_POST['category'], $_POST['tags'], $_POST['status']);
-            }
-
-            if(isset($_POST['delete']))
-            {
-                $Bugs->deleteBug($_POST['bugId']);
-            }
-
-            ?>
+            <?= $Database->userMessage($_SESSION['message']) ?>
 
             <form class="row g-3" method="POST" action="">
-                <input type="hidden" value="<?= $bug['id']; ?>" name="bugId">
+                <input type="hidden" value="<?= $bugDetails['id']; ?>" name="bugId">
                 <div class="col-md-12">
                     <label for="Category">Category</label>
                     <select class="form-control" id="Category" name="category">
@@ -107,7 +87,7 @@ include("includes/acp-header.php");
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Are you sure you want to update Bug Report #<?= $bug['id'] ?>?
+                            Are you sure you want to <b>update</b> this Bug Report?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -125,7 +105,7 @@ include("includes/acp-header.php");
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Are you sure you want to <b>delete</b> Bug Report #<?= $bug['id'] ?>?
+                            Are you sure you want to <b>delete</b> this Bug Report?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

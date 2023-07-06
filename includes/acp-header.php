@@ -25,19 +25,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=acp-allbugs">
+                        <a class="nav-link" href="?page=acp-all-bugs">
                             <span data-feather="home"></span>
                             All
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=acp-fixedbugs">
+                        <a class="nav-link" href="?page=acp-fixed-bugs">
                             <span data-feather="file"></span>
                             Fixed
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=acp-validbugs">
+                        <a class="nav-link" href="?page=acp-valid-bugs">
                             <span data-feather="shopping-cart"></span>
                             Pending
                         </a>

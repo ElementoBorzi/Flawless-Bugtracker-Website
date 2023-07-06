@@ -47,7 +47,7 @@ foreach($empRecords as $row)
 {
     $data[] = array(
         "id"=>$row['id'],
-        "title"=>"<a href='?page=acp-viewbug&id=".$row['id']."'>".$Common->customEcho($row['title'], 25)."</a>",
+        "title"=>"<a href='?page=acp-view-bug&id=".$row['id']."'>".$Common->customEcho($row['title'], 25)."</a>",
         "description"=>$Common->customEcho($row['description'], 25),
         "post_date"=>$row['post_date'],
         "category"=>$Common->getCategoryName($row['category']),

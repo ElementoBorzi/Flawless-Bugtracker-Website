@@ -194,7 +194,13 @@ class Bugs extends Database {
         
         //Success Message & Refresh.
         header("Refresh:3");
-        echo "<div class='alert alert-success' role='alert'><b>Success!</b> The bug #".$id." has been updated.</div>";
+
+        $message = array(
+            "type" => "success",
+            "text" => "<b>Success!</b> The bug #".$id." has been updated.</div>"
+        );
+
+        $_SESSION['message'] = $message;
     }
 
     /**
@@ -211,7 +217,7 @@ class Bugs extends Database {
         $stmt->execute();
         
         //Success Message & Refresh.
-        header("Location: ?page=acp-allbugs");
+        header("Location: ?page=acp-all-bugs");
     }
 
 }

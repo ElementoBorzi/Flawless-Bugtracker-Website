@@ -1,9 +1,6 @@
 <?php 
 include ("includes/header.php"); 
 include ("controllers/bug-view.php"); 
-
-foreach ($bugDetails as $bug)
-{
 ?>
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
@@ -13,7 +10,7 @@ foreach ($bugDetails as $bug)
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
             <li class="breadcrumb-item"><a href="?page=bug-list">Known bugs</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Bug ID #<?= $bug['id'] ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Bug ID #<?= $bugDetails['id'] ?></li>
         </ol>
     </nav>
     <hr />
@@ -33,26 +30,24 @@ foreach ($bugDetails as $bug)
 
     <div class="card">
         <div class="card-body">
-            <?= $Common->getPriorityName($bug['tags']) ." - <b>Bug status: </b>". $Common->getStatusName($bug['status']) ?>
-            <h5 class="card-title" style="margin-top: 40px;"><?= $bug['title'] ?></h5>
-            <h6 class="card-subtitle mb-2 text-muted">Bug ID #<?= $bug['id'] ?></h6>
+            <?= $Common->getPriorityName($bugDetails['tags']) ." - <b>Bug status: </b>". $Common->getStatusName($bugDetails['status']) ?>
+            <h5 class="card-title" style="margin-top: 40px;"><?= $bugDetails['title'] ?></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Bug ID #<?= $bugDetails['id'] ?></h6>
             <p class="card-text">
                 <hr>
                 <b>Bug Description</b>
                 <br />
-                <?= nl2br($bug['description']) ?>
+                <?= nl2br($bugDetails['description']) ?>
             </p>
 
             <p class="card-text">
                 <b>Resources</b><br />
-                <?php echo (!empty($bug['resources'])) ? nl2br($bug['resources']) : "There are no resources to show."; ?>
+                <?php echo (!empty($bugDetails['resources'])) ? nl2br($bugDetails['resources']) : "There are no resources to show."; ?>
             </p>
             <hr>
-            <p>Posted by: <i><?= $bug['author'] ?></i></p>
+            <p>Posted by: <i><?= $bugDetails['author'] ?></i></p>
         </div>
     </div>
 </div>
-
-<?php } ?>
 
 <?php include ("includes/footer.php") ?>

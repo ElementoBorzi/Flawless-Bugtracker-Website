@@ -1,3 +1,5 @@
 <?php
-$bugDetails = $Bugs->getBugDetails($_GET['id']);
+$getBugDetails = $Bugs->getBugDetails($_GET['id']);
+
+$bugDetails = $getBugDetails->fetch();
 ?>

@@ -178,11 +178,13 @@ class Account extends Database {
         {
             $encryptedPassword = password_hash($password, PASSWORD_DEFAULT); 
 
-            $stmt = $this->connect()->prepare("INSERT INTO ".DATABASE.".users (username, email, password, rank) VALUES (:username, :email, :password, :rank)");
+            $stmt = $this->connect()->prepare("INSERT INTO ".DATABASE.".users (username, email, password, join_date, rank) 
+            VALUES (:username, :email, :password, :join_date, :rank)");
             $stmt->bindValue(":username", $username);
             $stmt->bindValue(":email", $email);
             $stmt->bindValue(":password", $encryptedPassword);
-            $stmt->bindValue(":rank", "0");
+            $stmt->bindValue(":join_date", date('Y-m-d'));
+            $stmt->bindValue(":rank", 0);
 
             $stmt->execute();
             

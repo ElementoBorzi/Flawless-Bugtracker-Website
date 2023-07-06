@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This class is used for Database related functions
+ *
+ * @name	: Database.php
+ * @package	: Bugtracker
+ * @author	: Gabriel Ferreira <ferreirawow@gmail.com>
+ * @link	: --
+ * @version	: 1.0
+ */
 class Database {
         
     private $host = HOST;
@@ -7,6 +16,15 @@ class Database {
     private $password = PASSWORD;
     private $database = DATABASE;
 
+    /**
+	 * Connect's the system to the database
+	 * 
+     * @param	: $host (string)
+     * @param	: $username (string)
+     * @param	: $password (string)
+     * @param	: $database (string)
+	 * @return	: $connect (string)
+	*/
     protected function connect() {
         try {
             $connect = new PDO("mysql:host=".$this->host.";dbname=".$this->database."", $this->username, $this->password);

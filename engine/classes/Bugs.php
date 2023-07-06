@@ -1,7 +1,21 @@
 <?php
 
+/**
+ * This class is used to store Bugs related functions
+ *
+ * @name	: Bugs.php
+ * @package	: Bugtracker
+ * @author	: Pluton <ferreirawow@gmail.com>
+ * @link	: --
+ * @version	: 1.0
+*/
 class Bugs extends Database {
 
+    /**
+	 * Gets all the bugs Categories.
+	 * 
+	 * @return	: $stmt (array)
+	*/
     public function getCategories () 
     {
         $stmt = $this->connect()->query("SELECT * FROM ".DATABASE.".category ORDER by ID");
@@ -12,6 +26,11 @@ class Bugs extends Database {
         }
     }
 
+    /**
+	 * Gets all the bugs Tags.
+	 * 
+	 * @return	: $stmt (array)
+	*/
     public function getTags () 
     {
         $stmt = $this->connect()->query("SELECT * FROM ".DATABASE.".tags ORDER by ID");
@@ -22,6 +41,11 @@ class Bugs extends Database {
         }
     }
 
+    /**
+	 * Gets all the bugs Status.
+	 * 
+	 * @return	: $stmt (array)
+	*/
     public function getStatus () 
     {
         $stmt = $this->connect()->query("SELECT * FROM ".DATABASE.".status ORDER by ID");
@@ -32,6 +56,11 @@ class Bugs extends Database {
         }
     }
 
+    /**
+	 * Gets the count of the existing bugs in database.
+	 * 
+	 * @return	: $totalRecords (string)
+	*/
     public function getTotalRows()
     {
         ## Total number of records without filtering
@@ -43,6 +72,13 @@ class Bugs extends Database {
         return $totalRecords;
     }
 
+    /**
+	 * Gets the count of the existing bugs in database.
+	 * 
+     * @param   : $searchQuery (string)
+     * @param   : $searchArray (array)
+	 * @return	: $totalRecordwithFilter (string)
+	*/
     public function getTotalRowsFilter($searchQuery, $searchArray)
     {
         ## Total number of records with filtering
@@ -54,6 +90,17 @@ class Bugs extends Database {
         return $totalRecordwithFilter;
     }
 
+    /**
+	 * Gets existing bugs with filters and table definitions.
+	 * 
+     * @param   : $searchQuery (string)
+     * @param   : $searchArray (array)
+     * @param   : $columnName (string)
+     * @param   : $columnSortOrder (string)
+     * @param   : $row (string)
+     * @param   : $rowperpage (string)
+	 * @return	: $empRecords (array)
+	*/
     public function getAllBugs($searchArray, $searchQuery, $columnName, $columnSortOrder, $row, $rowperpage)
     {
         ## Fetch records
@@ -73,6 +120,12 @@ class Bugs extends Database {
         return $empRecords;
     }
 
+    /**
+	 * Gets the details of a specific bug.
+	 * 
+     * @param   : $bugId (string)
+	 * @return	: $stmt (array)
+	*/
     public function getBugDetails($bugId)
     {
         $stmt = $this->connect()->prepare("SELECT * FROM ".DATABASE.".bugs WHERE id = ?");
@@ -84,6 +137,17 @@ class Bugs extends Database {
         }
     }
 
+    /**
+	 * Inserts a new bug in the database.
+	 * 
+     * @param   : $title (string)
+     * @param   : $description (string)
+     * @param   : $resources (string)
+     * @param   : $author (string)
+     * @param   : $category (string)
+     * @param   : $tags (string)
+	 * @return	: Success Message.
+	*/
     public function insertBugs($title, $description, $resources, $author, $category, $tags)
     {
         $stmt= $this->connect()->prepare("INSERT INTO ".DATABASE.".bugs (title, description, resources, author, category, tags, status) 
@@ -103,6 +167,15 @@ class Bugs extends Database {
         echo "<div class='alert alert-success' role='alert'><b>Success!</b> Your bug has been submitted. Thank you for your contribution.</div>";
     }
 
+    /**
+	 * Updates existing bug information.
+	 * 
+     * @param   : $id (string)
+     * @param   : $category (string)
+     * @param   : $tags (string)
+     * @param   : $status (string)
+	 * @return	: Success Message.
+	*/
     public function updateBug($id, $category, $tags, $status)
     {
         $stmt= $this->connect()->prepare("UPDATE ".DATABASE.".bugs SET category=:category, tags=:tags, status=:status WHERE id=:id");
@@ -118,6 +191,12 @@ class Bugs extends Database {
         echo "<div class='alert alert-success' role='alert'><b>Success!</b> The bug #".$id." has been updated.</div>";
     }
 
+    /**
+	 * Deletes a existing bug.
+	 * 
+     * @param   : $id (string)
+	 * @return	: Success Message.
+	*/
     public function deleteBug($id)
     {
         $stmt= $this->connect()->prepare("DELETE FROM ".DATABASE.".bugs WHERE id=:id");

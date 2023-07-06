@@ -10,7 +10,13 @@
  * @version	: 1.0
  */
 class Account extends Database {
-    
+
+    /**
+	 * Checks if a user exists.
+	 * 
+     * @param	: $userInformation (string)
+	 * @return	: $array (array)
+	*/
     public function checkUser($userInformation)
     {
         $email = FALSE;
@@ -27,7 +33,6 @@ class Account extends Database {
             {
                 $email = TRUE;
             }
-            $stmt = null;
         }
         
         if (isset($userInformation["id"]))
@@ -64,6 +69,12 @@ class Account extends Database {
         return $array;
     }
 
+    /**
+	 * Gets user information based on e-mail.
+	 * 
+     * @param	: $email (string)
+	 * @return	: $stmt (array)
+	*/
     public function getUser($email)
     {
         $stmt = $this->connect()->prepare("SELECT * FROM ".DATABASE.".users WHERE email = :email");
@@ -73,6 +84,16 @@ class Account extends Database {
         return $stmt;
     }
 
+    /**
+	 * Login system if $email exists and $password match.
+	 * 
+     * @param	: $email (string)
+     * @param	: $password (string)
+	 * @return	: $_SESSION['username'] (string)
+     * @return	: $_SESSION['email'] (string)
+     * @return	: $_SESSION['id'] (string)
+     * @return	: $_SESSION['rank'] (string)
+	*/
     public function login($email, $password)
     {
         $userInformation = array(
@@ -104,6 +125,14 @@ class Account extends Database {
         }
     }
 
+    /**
+	 * Register's a user.
+	 * 
+     * @param	: $username (string)
+     * @param	: $email (string)
+     * @param	: $password (string)
+	 * @return	: success message.
+	*/
     public function register($username, $email, $password)
     {
         $userInformation = array(
@@ -141,6 +170,12 @@ class Account extends Database {
         }
     }
 
+    /**
+	 * Get's user total bug reports.
+	 * 
+     * @param	: $username (string)
+	 * @return	: $records (string).
+	*/
     public function getAccountTotalBugs($username)
     {
         $stmt = $this->connect()->prepare("SELECT COUNT(*) as allcount FROM ".DATABASE.".bugs WHERE author = :author");

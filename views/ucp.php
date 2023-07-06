@@ -1,7 +1,7 @@
 <?php 
 $Common->protect("user-is-logged");
-
 include("includes/header.php");
+include ("controllers/ucp.php");
 ?>
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
@@ -19,11 +19,6 @@ include("includes/header.php");
             <td>Bug's Reported</td>            
           </tr>
           <tr>
-            <?php 
-            $getUser = $Account->getUser($_SESSION['email'])->fetch();
-            $totalBugs = $Account->getAccountTotalBugs($_SESSION['username']);
-            ?>
-
             <td><?= $getUser["username"] ?></td>
             <td><?= $getUser["email"] ?></td>
             <td><?= $getUser["join_date"] ?></td>

@@ -38,7 +38,7 @@
     DEFINE ("TITLE", "Bugtracker");
     DEFINE ("CAPTCHA", "10");
 
-    DEFINE ("ACP_PASSWORD", "bugtracker");
+    DEFINE ("ACP_PASSWORD", $_ENV["ACP_PASSWORD"]);
     
     //Error handling
     unset($_SESSION['message']);

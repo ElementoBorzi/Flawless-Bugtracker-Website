@@ -21,7 +21,7 @@ class Admin extends Database {
     {
         if (ACP_PASSWORD == $password)
         {
-            $_SESSION['admin'] = $_SESSION['rank'].$_SESSION['username'];
+            $_SESSION['admin'] = $_SESSION['userRank'].$_SESSION['username'];
             header("location: ?page=acp-home"); 
         }
         else

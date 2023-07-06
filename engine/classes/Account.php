@@ -111,7 +111,7 @@ class Account extends Database {
                 $_SESSION['username'] = $getInformation['username'];
                 $_SESSION['email'] = $getInformation['email'];
                 $_SESSION['id'] = $getInformation['id'];
-                $_SESSION['rank'] = $getInformation['rank'];
+                $_SESSION['rank'] = $getInformation['userRank'];
 
                 header("location: ?page=ucp");
             } 
@@ -177,14 +177,13 @@ class Account extends Database {
         if ($verify["email"] == FALSE && $verify["username"] == FALSE)
         {
             $encryptedPassword = password_hash($password, PASSWORD_DEFAULT); 
-
-            $stmt = $this->connect()->prepare("INSERT INTO ".DATABASE.".users (username, email, password, join_date, rank) 
-            VALUES (:username, :email, :password, :join_date, :rank)");
+            $stmt = $this->connect()->prepare("INSERT INTO ".DATABASE.".users (username, email, password, join_date, userRank) 
+            VALUES (:username, :email, :password, :join_date, :userRank)");
             $stmt->bindValue(":username", $username);
             $stmt->bindValue(":email", $email);
             $stmt->bindValue(":password", $encryptedPassword);
             $stmt->bindValue(":join_date", date('Y-m-d'));
-            $stmt->bindValue(":rank", 0);
+            $stmt->bindValue(":userRank", 0);
 
             $stmt->execute();
             

@@ -22,7 +22,7 @@
             {
             ?>
             <li><a class="dropdown-item" href="?page=ucp">Account Panel</a></li>
-            <?php if ($_SESSION['rank'] >= 1){ echo "<li><a class='dropdown-item' href='?page=acp-login'>Admin Panel</a></li>"; } ?>
+            <?php if ($_SESSION['userRank'] >= 1){ echo "<li><a class='dropdown-item' href='?page=acp-login'>Admin Panel</a></li>"; } ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="?page=logout">Logout</a></li>
             <?php } else { ?>

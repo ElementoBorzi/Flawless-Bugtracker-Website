@@ -182,7 +182,7 @@ class Common extends Database {
                 break;
 
             case "acp-rank-verify":
-                if (!isset($_SESSION['rank']) >= 1)
+                if (!isset($_SESSION['userRank']) >= 1)
                 {
                     header ("location: ?page=home");
                 }

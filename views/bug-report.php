@@ -114,3 +114,5 @@ include ("controllers/bug-report.php");
         <script src="views/js/new-bug.js"></script>
     </form>
 </div>
+
+<?php include ("includes/footer.php") ?>

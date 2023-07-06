@@ -54,3 +54,5 @@ foreach ($bugDetails as $bug)
 </div>
 
 <?php } ?>
+
+<?php include ("includes/footer.php") ?>

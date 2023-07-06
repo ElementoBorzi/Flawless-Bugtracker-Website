@@ -1,6 +1,6 @@
 <?php
-    $Common->protect("user-is-logged");
-    include ("controllers/login.php");
+$Common->protect("user-is-logged");
+include ("controllers/login.php");
 ?>
 
 <link rel="stylesheet" href="theme/default/css/acp-login.css">
@@ -21,3 +21,5 @@
         <p class="mt-5 mb-3 text-muted text-center">&copy; <?= date("Y") ?></p>
     </form>
 </main>
+
+<?php include ("includes/footer.php") ?>

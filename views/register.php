@@ -63,3 +63,5 @@ include ("controllers/register.php");
         <script src="views/js/register.js"></script>
     </form>
 </div>
+
+<?php include ("includes/footer.php") ?>

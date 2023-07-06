@@ -1,11 +1,9 @@
-<?php include("includes/header.php"); ?>
-
-<?php
-$bugDetails = $Bugs->getBugDetails($_GET['id']);
+<?php 
+include ("includes/header.php"); 
+include ("controllers/bug-view.php"); 
 
 foreach ($bugDetails as $bug)
 {
-    
 ?>
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
@@ -47,16 +45,7 @@ foreach ($bugDetails as $bug)
 
             <p class="card-text">
                 <b>Resources</b><br />
-                <?php
-                if( empty($bug['resources']))
-                {
-                    echo "There are no resources to show.";
-                } 
-                else 
-                {
-                    echo nl2br($bug['resources']);
-                }
-                ?>
+                <?php echo (!empty($bug['resources'])) ? nl2br($bug['resources']) : "There are no resources to show."; ?>
             </p>
             <hr>
             <p>Posted by: <i><?= $bug['author'] ?></i></p>

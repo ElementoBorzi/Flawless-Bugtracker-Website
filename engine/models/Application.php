@@ -41,8 +41,7 @@ class Application {
             else
             {
                 self::error("404");
-            }
-            
+            }     
         }
         else
         {
@@ -68,28 +67,72 @@ class Application {
     public static function install($host, $username, $password, $database, $title, $header, $acpPassword)
     {
 		// Open db_config.php file
-        $myfile = fopen ("../db-config.php", "w") or die("Unable to open file!");
+        $myfile = fopen ("../config.php", "w") or die("Unable to open file!");
     
 		// Text to insert on the file
-        $txt = '
-        <?php
-        define ("database", array(
+        $txt = '<?php
+
+        /**
+         * App Settings
+         * DO NOT TOUCH UNTIL "User Settings"
+         */
+        
+        session_start();
+        
+        //Error handling
+        unset($_SESSION["message"]);
+        $_SESSION["message"] = null;
+        
+        // App main paths
+        define("BASE_PATH", realpath(__DIR__));
+        define("APP_PATH", empty($app_name) ? BASE_PATH ."/website" : BASE_PATH ."/". $app_name);
+        define("APP_TPL_PATH", empty($app_name) ? "website" : "../". $app_name);
+        define("CORE_PATH", BASE_PATH ."/engine");
+        define("MODEL_PATH", CORE_PATH ."/models");
+        define("ERROR_PATH", CORE_PATH ."/errors");
+        define("CONTROLLER_PATH", APP_PATH ."/controllers");
+        define("INCLUDE_PATH", APP_PATH ."/includes");
+        define("VIEW_PATH", APP_PATH ."/views");
+        define("SCRIPT_PATH", APP_TPL_PATH ."/scripts");
+        
+        // App Constants
+        define("APP_NAME", "Flawless");
+        define ("APP_SLOGAN", "Report bugs with ease.");
+        
+        // Models init
+        foreach (glob(MODEL_PATH."/*.php") as $filename)
+        {
+            spl_autoload_register(
+                function($filename)
+                {
+                    include (MODEL_PATH."/".$filename.".php");
+                }
+            );
+        }
+        
+        /**
+         * User Settings
+         * YOU CAN EDIT FROM HERE BELLOW.
+         */
+        
+        #Admin Control Panel Password
+        define("ACP_PASSWORD", "'.$acpPassword.'");	
+         
+        #Website Information
+        define("HEADER", "'.$header.'");
+        define("TITLE", "'.$title.'");
+        
+        #Number of letters on the Captcha (Switch the 10 to any value to your liking)
+        define("CAPTCHA", "10");
+        
+        
+        define("database", array(
             "host" => "'.$host.'",
             "username" => "'.$username.'",
             "password" => "'.$password.'",
             "database" => "'.$database.'"
         ));
         
-        
-        #Admin Control Panel Password
-        define ("ACP_PASSWORD", "'.$acpPassword.'");	
-        
-        #Website Information
-        define ("HEADER", "'.$header.'");
-        define ("TITLE", "'.$title.'");
-        
-        #Number of letters on the Captcha (Switch the 10 to any value to your liking)
-        define ("CAPTCHA", "10");
         ?>';
 
 		// Write on the file

@@ -1,14 +1,9 @@
 <?php
-
-/**
- * App Settings
- */
-
 session_start();
 
 //Error handling
-unset($_SESSION['message']);
-$_SESSION['message'] = null;
+unset($_SESSION["message"]);
+$_SESSION["message"] = null;
 
 // App main paths
 define("BASE_PATH", realpath(__DIR__));
@@ -26,28 +21,6 @@ define("SCRIPT_PATH", APP_TPL_PATH ."/scripts");
 define("APP_NAME", "Flawless");
 define ("APP_SLOGAN", "Report bugs with ease.");
 
-/**
- * User Settings
- */
-
-#Admin Control Panel Password
-define ("ACP_PASSWORD", "bugtracker");	
-
-#Website Information
-define ("HEADER", "Website header, just testing stuff.");
-define ("TITLE", "Bugtracker");
-
-#Number of letters on the Captcha (Switch the 10 to any value to your liking)
-define ("CAPTCHA", "10");
-
-
-define ("database", array(
-    "host" => "127.0.0.1",
-    "username" => "root",
-    "password" => "ascent",
-    "database" => "bugtracker"
-));
-
 // Models init
 foreach (glob(MODEL_PATH."/*.php") as $filename)
 {
@@ -58,5 +31,4 @@ foreach (glob(MODEL_PATH."/*.php") as $filename)
         }
     );
 }
-
 ?>

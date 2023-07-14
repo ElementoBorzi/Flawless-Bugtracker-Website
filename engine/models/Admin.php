@@ -4,7 +4,7 @@
  * This class is used for Admin related functions
  *
  * @name	: Admin.php
- * @package	: Bugtracker
+ * @package	: Flawless
  * @author	: Gabriel Ferreira <ferreirawow@gmail.com>
  * @link	: --
  * @version	: 1.0

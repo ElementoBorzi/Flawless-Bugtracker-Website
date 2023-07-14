@@ -3,7 +3,7 @@
  * This class is used to store common functions
  *
  * @name	: Common.php
- * @package	: Bugtracker
+ * @package	: Flawless
  * @author	: Pluton <ferreirawow@gmail.com>
  * @link	: --
  * @version	: 1.0

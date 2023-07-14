@@ -4,7 +4,7 @@
  * This class is used to store Bugs related functions
  *
  * @name	: Bugs.php
- * @package	: Bugtracker
+ * @package	: Flawless
  * @author	: Pluton <ferreirawow@gmail.com>
  * @link	: --
  * @version	: 1.0

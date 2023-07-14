@@ -1,14 +1,34 @@
 <?php
+/**
+ * This class is used for Admin related functions
+ *
+ * @name	: Application.php
+ * @package	: Flawless
+ * @author	: Gabriel Ferreira <ferreirawow@gmail.com>
+ * @link	: --
+ * @version	: 1.0
+ */
 class Application {
+
 
     public static $error = "";
 
+    /**
+	 * Initiates the Application
+	*/
     public static function AppInit()
     {
         $page = isset($_GET['page']) ? $_GET['page'] : '';
         self::loadView($page);
     }
 
+    /**
+	 * Loads the Controller
+	 * 
+     * @param	: $page (string)
+	 * @return	: Include controller page
+     * @return	: $error (string)
+	*/
     public static function loadController($page)
     {
         if (!empty($page))
@@ -30,6 +50,13 @@ class Application {
 		}
     }
 
+    /**
+	 * Loads the View
+	 * 
+     * @param	: $page (string)
+	 * @return	: Include view page
+     * @return	: $error (string)
+	*/
     public static function loadView($view)
     {
         if (!empty($view))
@@ -49,11 +76,24 @@ class Application {
         }
     }
 
+    /**
+	 * Assigns a variable to another
+	 * 
+     * @param	: $var1 (string)
+     * @param	: $var2 (string)
+     * @return	: define
+	*/
     public static function assign($var1, $var2)
     {
         define($var1, $var2);
     }
 
+    /**
+	 * Displays errors and redirects them to specific pages
+	 * 
+     * @param	: $error (string)
+     * @return	: Error Page
+	*/
     public static function error($error)
     {
 		if (file_exists(ERROR_PATH ."/". $error .".php"))
@@ -64,6 +104,18 @@ class Application {
 		}
 	}
 
+    /**
+	 * Installs the application
+	 * 
+     * @param	: $host (string)
+     * @param	: $username (string)
+     * @param	: $password (string)
+     * @param	: $database (string)
+     * @param	: $title (string)
+     * @param	: $header (string)
+     * @param	: $acpPassword (string)
+     * @return	: TRUE or FALSE
+	*/
     public static function install($host, $username, $password, $database, $title, $header, $acpPassword)
     {
 		// Open db_config.php file

@@ -15,13 +15,6 @@ To use Bugtracker, make sure you meet the following requirements:
 3. Apache web server with mod_rewrite enabled and properly configured for URL rewriting.
 4. If you're using Linux, ensure that your directories have appropriate permissions (`.env` file will need `755` permissions).
 
-## Setting up .env
-
-To take advantage of the `.env` file, follow these steps:
-
-1. Create a `.env` file in the `bugtracker/engine/` directory.
-2. Copy the contents from `example.env` into `.env`. Alternatively, you can rename `example.env` to just `.env`.
-
 ## Serving to the web
 
 You can serve Bugtracker to the web using one of the following options:
@@ -37,8 +30,7 @@ If you encounter any issues, please report them in the [issues section](https://
 
 ## Contributors
 
-[![techett](https://github.com/techett.png?size=50)](https://github.com/techett)
-[![Ferreira9006](https://github.com/Ferreira9006.png?size=50)](https://github.com/Ferreira9006)
+View the [contributors page](https://github.com/Ferreira9006/Flawless-Bugtracker-Website/graphs/contributors)
 
 ---
 

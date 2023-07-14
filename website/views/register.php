@@ -6,6 +6,7 @@ Application::loadController("login");
 
 // Load Include files
 Application::loadView("header-inc");
+Application::loadView("menu-inc");
 ?>
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">

@@ -2,7 +2,7 @@
 Common::protect("user-is-logged");
 
 //Load Controller
-Application::loadController("login");
+Application::loadController("register");
 
 // Load Include files
 Application::loadView("header-inc");

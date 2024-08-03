@@ -118,50 +118,57 @@ class Application {
 	*/
     public static function install($host, $username, $password, $database, $title, $header, $acpPassword)
     {
-		// Open db_config.php file
-        $myfile = fopen ("../.env", "w") or die("Unable to open file!");
+		// Open .env file (if it doesn't exist, creates it
+        $fileName = fopen ("../.env", "w") or die("Unable to open file!");
     
 		// Text to insert on the file
-        $txt = '<?php
-        /**
-         * User Settings
-         * YOU CAN EDIT FROM HERE BELLOW.
-         */
-        
-        #Admin Control Panel Password
-        define("ACP_PASSWORD", "'.$acpPassword.'");	
-         
-        #Website Information
-        define("HEADER", "'.$header.'");
-        define("TITLE", "'.$title.'");
-        
-        #Number of letters on the Captcha (Switch the 10 to any value to your liking)
-        define("CAPTCHA", "10");
-        
-        
-        define("database", array(
-            "host" => "'.$host.'",
-            "username" => "'.$username.'",
-            "password" => "'.$password.'",
-            "database" => "'.$database.'"
-        ));
-        
-        ?>';
+        $text = '
+            ACP_PASSWORD="{$acpPassword}"
+
+            # Website Information
+            WEB_TITLE="{$title}"
+            WEB_HEADER="{$header}"
+
+            # Number of letters on the Captcha (Switch the 10 to any value to your liking)
+            CAPTCHA=10
+
+            # Database Information
+            DATABASE_HOST="{$host}"
+            DATABASE_USERNAME="{$username}"
+            DATABASE_PASSWORD="{$password}"
+            DATABASE_NAME="{$database}"
+        ';
 
 		// Write on the file
-        fwrite ($myfile, $txt);
+        fwrite ($fileName, $text);
 
 		// Close the file
-        fclose ($myfile);
+        fclose ($fileName);
 
 		// Test the connection using the given variables
         try 
         {
             // Connection
-            $connect = new PDO("mysql:host=".$host.";dbname=".$database."", $username, $password);
+            $connect = new PDO("mysql:host=".$host."", $username, $password);
 
             // Set the PDO error mode to exception
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+
+            if ($connect)
+            {
+                // Create database if it doesn't exist
+                $connect->exec("CREATE DATABASE IF NOT EXISTS ".$database.";");
+
+                // Select the database
+                $connect->exec("USE ".$database.";");
+
+                // Open database/*.sql files and execute them 
+                foreach (glob("database/*.sql") as $filename) 
+                {
+                    $sql = file_get_contents($filename);
+                    $connect->exec($sql);
+                }
+            }
 
         } 
         // Catches the errors
@@ -174,12 +181,9 @@ class Application {
             );
 
             $_SESSION['message'] = $message;	
-
             return false;
         }
-        
         return true;
-		
     }
 
     /**

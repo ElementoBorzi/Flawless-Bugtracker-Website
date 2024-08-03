@@ -1,6 +1,6 @@
         <div class="container">
 			<footer class="py-3 my-4 border-top">
-				<p class="text-center text-muted">&copy; 2023 - <?= TITLE ?></p>
+				<p class="text-center text-muted">&copy; 2023 - <?= getenv('WEB_TITLE') ?></p>
 				<p class="text-center text-muted">
 					Proudly powered by: 
 					<a href="https://github.com/Ferreira9006/Flawless-Bugtracker-Website"><?= APP_NAME ?></a>

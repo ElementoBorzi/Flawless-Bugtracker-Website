@@ -1,0 +1,9 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Check if the URL does not directly map to a file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite rule to convert /page to ?page=
+RewriteRule ^([^/]+)/?$ index.php?page=$1 [L,QSA]

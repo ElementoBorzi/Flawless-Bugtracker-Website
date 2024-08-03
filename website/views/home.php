@@ -10,7 +10,7 @@ Application::loadView("menu-inc");
 
 
 <div class="container shadow col-xl-10 col-xxl-8 px-4 py-5" style="margin: 100px auto;">
-  <h1 style="margin-bottom: 50px;"><?= HEADER ?></h1>
+  <h1 style="margin-bottom: 50px;"><?= getenv('WEB_TITLE') ?></h1>
 
   <div class="card">
     <div class="card-body">

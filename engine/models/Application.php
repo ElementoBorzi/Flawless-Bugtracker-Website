@@ -122,22 +122,23 @@ class Application {
         $fileName = fopen ("../.env", "w") or die("Unable to open file!");
     
 		// Text to insert on the file
-        $text = '
-            ACP_PASSWORD="{$acpPassword}"
+        $text = "
+ACP_PASSWORD=\"$acpPassword\"
 
-            # Website Information
-            WEB_TITLE="{$title}"
-            WEB_HEADER="{$header}"
+# Website Information
+WEB_TITLE=\"$title\"
+WEB_HEADER=\"$header\"
 
-            # Number of letters on the Captcha (Switch the 10 to any value to your liking)
-            CAPTCHA=10
+# Number of letters on the Captcha (Switch the 10 to any value to your liking)
+CAPTCHA=10
 
-            # Database Information
-            DATABASE_HOST="{$host}"
-            DATABASE_USERNAME="{$username}"
-            DATABASE_PASSWORD="{$password}"
-            DATABASE_NAME="{$database}"
-        ';
+# Database Information
+DATABASE_HOST=\"$host\"
+DATABASE_USERNAME=\"$username\"
+DATABASE_PASSWORD=\"$password\"
+DATABASE_NAME=\"$database\"
+";
+
 
 		// Write on the file
         fwrite ($fileName, $text);
